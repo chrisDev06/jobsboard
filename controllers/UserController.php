@@ -8,14 +8,11 @@ class UserController {
         $this->userModel = new UserModel($db);
     }
 
-    public function getUsers() {
-        return $this->userModel->getUsers();
-    }
-
+    
     public function addUser($email, $first_name, $last_name) {
         return $this->userModel->addUser($email, $first_name, $last_name);
     }
-   
+    
     public function deleteUser($id) {
         return $this->userModel->deleteUser($id);
     }
@@ -23,5 +20,6 @@ class UserController {
     public function getAllUsers() {
         return $this->userModel->getUsers();
     }
+    
 }
 ?>

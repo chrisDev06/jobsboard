@@ -2,7 +2,6 @@
 
     1/ Clonez le dépôt :
     git clone https://github.com/chrisDev06/jobsboard.git
-    cd jobsboard
 
     2/ Configuration de la base de données :
         Créez une base de données MySQL nommée jobboard.
@@ -20,7 +19,7 @@
 
 Structure du Projet
 
-L'application suit une architecture (MVC)
+L'application suit une architecture MVC
 
     config/ : Contient les fichiers de configuration pour la base de données et autres paramètres.
     controllers/ : Les contrôleurs gèrent les actions utilisateur et les requêtes.
@@ -35,3 +34,8 @@ Fonctionnement
     Les données récupérées sont transmises au contrôleur.
     Le contrôleur choisit la vue appropriée et transmet les données à afficher.
     La vue affiche les données à l'utilisateur.
+
+## outil
+
+trello : https://trello.com/b/IK0WjSsC/jobsboard
+figma : https://www.figma.com/file/yyRqKtEFJXw3sQjzxBMQ9t/Untitled?type=design&node-id=0-1&mode=design&t=MU92Adw8uPXNBtSH-0
