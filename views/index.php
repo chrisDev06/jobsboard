@@ -1,4 +1,18 @@
 <?php
+session_start();
+
+// Vérifier si la clé 'email' est définie dans la session
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+    echo $email;
+    // Utilisez l'email comme nécessaire
+} else {
+    // La clé 'email' n'est pas définie, faites quelque chose pour gérer cette situation
+    echo 'Email non défini dans la session.';
+}
+
+
+
 require_once '../controllers/UserController.php';
 require_once '../config/config.php';
 
@@ -11,8 +25,14 @@ try {
 } catch (PDOException $e) {
     echo 'Database connection error: ' . $e->getMessage();
 }
-?>
 
+// if(!$_SESSION['password']){
+//     header("Location: ../views/log/login.php"); // Rediriger vers la liste des utilisateurs
+
+// }
+?>
+<a href="./log/login.php">Connecter</a>
+<a href="../script/deconnect.php">Se déconnecter</a>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -25,8 +45,8 @@ try {
     <tr>
         <td><?= $user['id'] ?></td>
         <td><?= $user['email'] ?></td>
-        <td><?= $user['first_name'] ?></td>
-        <td><?= $user['last_name'] ?></td>
+        <td><?= $user['first_Name'] ?></td>
+        <td><?= $user['last_Name'] ?></td>
         <td><a href="../script/delete_user.php?id=<?= $user['id'] ?>">Supprimer</a></td>
     </tr>
 <?php endforeach; ?>

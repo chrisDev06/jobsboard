@@ -1,6 +1,4 @@
-<?php
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +17,7 @@
     <label for="">Password</label>
     <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
   </div>
-  <input type="submit" value="Ajouter">
+  <input type="submit" name="add" value="Ajouter">
 
 </form>
 </body>
