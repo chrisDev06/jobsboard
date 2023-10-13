@@ -32,6 +32,7 @@ try {
 // }
 ?>
 <a href="./log/login.php">Connecter</a>
+<a href="./log/register.php">register</a>
 <a href="../script/deconnect.php">Se déconnecter</a>
 <table border="1">
     <tr>

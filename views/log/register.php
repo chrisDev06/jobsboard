@@ -17,6 +17,13 @@
     <label for="">Password</label>
     <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
   </div>
+  <div class="">
+  <label for="choix">Choix :</label>
+  <select id="choix" name="role">
+    <option value="employeur">Employeur</option>
+    <option value="user">Utilisateur</option>
+  </select>
+  </div>
   <input type="submit" name="add" value="Ajouter">
 
 </form>

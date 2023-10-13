@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["role"]) || $_SESSION["role"] == 'user' || $_SESSION["role"] == 'employeur') 
+if (!isset($_SESSION["role"]) || $_SESSION["role"] == 'user') 
 {    
 	header("Location: ../index.php");
 
@@ -11,10 +11,10 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] == 'user' || $_SESSION["role"
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Home Page</title>
+    <title>Employeur Home Page</title>
 </head>
 <body>
-    <h1>THIS IS ADMIN HOME PAGE</h1>
+    <h1>THIS IS Employeur HOME PAGE</h1>
     <?php echo $_SESSION["email"] ?>
     <a href="logout.php">Logout</a>
 </body>

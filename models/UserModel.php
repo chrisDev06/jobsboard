@@ -13,13 +13,17 @@ class UserModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addUser($email, $password) {
-        $query = 'INSERT INTO users (email, password) VALUES (:email, :password)';
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
-        return $stmt->execute(); // Retourne true si l'insertion a réussi, false sinon
+    public function addUser($email, $password, $role) {
+        
+            $query = 'INSERT INTO users (email, password, role) VALUES (:email, :password, :role)';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':role', $role);
+            return $stmt->execute(); // Retourne true si l'insertion a réussi, false sinon
+       
     }
+    
 
     public function deleteUser($id) {
         $query = 'DELETE FROM users WHERE id = :id';

@@ -21,7 +21,12 @@ if (isset($_POST['envoi'])) {
 
                 if ($user['role'] === 'admin') {
                     header("Location: ../views/admin/admin_dashboard.php");  // Rediriger vers le dashboard admin
-                } else {
+                }
+                elseif(($user['role'] === 'employeur')){
+                    header("Location: ../views/employeur/employeur_dashboard.php");  // Rediriger vers le dashboard admin
+
+                }
+                else {
                     header("Location: ../views/index.php");
                 }
                 exit();

@@ -10,9 +10,10 @@ if (isset($_POST['add'])) {
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         $email = htmlspecialchars($_POST['email']);
         $password = sha1($_POST['password']);
+        $role = $_POST['role']; 
 
-        // Maintenant, nous avons les bonnes valeurs d'email et de mot de passe
-        $userController->addUser($email, $password);
+        // Appel de la méthode addUser avec le rôle en paramètre
+        $userController->addUser($email, $password, $role);
 
         $takeUser = $db->prepare('SELECT * FROM users WHERE email = ? AND password = ?');
         $takeUser->execute(array($email, $password));
