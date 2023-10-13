@@ -10,11 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userController = new UserController($db);
 
         $email = $_POST['email'];
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
+        $password = $_POST['email'];
+
 
         // Appel à la méthode pour ajouter un utilisateur
-        $userController->addUser($email, $first_name, $last_name);
+        $userController->addUser($email, $password);
 
         header("Location: ../views/index.php"); // Rediriger vers la liste des utilisateurs
         exit();

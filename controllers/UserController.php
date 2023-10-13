@@ -9,8 +9,8 @@ class UserController {
     }
 
     
-    public function addUser($email, $first_name, $last_name) {
-        return $this->userModel->addUser($email, $first_name, $last_name);
+    public function addUser($email, $password) {
+        return $this->userModel->addUser($email, $password);
     }
     
     public function deleteUser($id) {

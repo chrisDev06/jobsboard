@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 
         $id = $_GET['id'];
 
+        // Appel à la méthode pour supprimer un utilisateur
         $userController->deleteUser($id);
 
         header("Location: ../views/index.php"); // Rediriger vers la liste des utilisateurs
