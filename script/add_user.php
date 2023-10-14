@@ -6,7 +6,7 @@ require_once '../config/config.php';
 $db = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
 $userController = new UserController($db);
 
-if (isset($_POST['register'])) {
+if (isset($_POST['add'])) {
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         $email = htmlspecialchars($_POST['email']);
         $password = sha1($_POST['password']);
@@ -14,18 +14,8 @@ if (isset($_POST['register'])) {
 
         // Appel de la méthode addUser avec le rôle en paramètre
         $userController->addUser($email, $password, $role);
-
-        $takeUser = $db->prepare('SELECT * FROM users WHERE email = ? AND password = ?');
-        $takeUser->execute(array($email, $password));
-        if ($takeUser->rowCount() > 0) {
-            $_SESSION['email'] = $email;
-            $_SESSION['password'] = $password;
-            $_SESSION['id'] = $takeUser->fetch()['id'];
-        }
-    } else {
-        // message erreur
     }
 }
 
-header("Location: ../views/index.php"); // Rediriger vers la liste des utilisateurs
+header("Location: ../views/admin_dashboard.php"); // Rediriger vers la liste des utilisateurs
 ?>

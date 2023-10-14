@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         // Appel à la méthode pour supprimer un utilisateur
         $userController->deleteUser($id);
 
-        header("Location: ../views/index.php"); // Rediriger vers la liste des utilisateurs
+        header("Location: ../views/admin_dashboard.php"); // Rediriger vers la liste des utilisateurs
         exit();
     } catch (PDOException $e) {
         echo 'Erreur lors de la suppression de l\'utilisateur : ' . $e->getMessage();
