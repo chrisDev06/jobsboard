@@ -31,6 +31,24 @@ class UserModel {
         $stmt->bindParam(':id', $id);
         return $stmt->execute(); // Retourne true si la suppression a réussi, false sinon
     }
+
+    public function updateUser($id, $email, $first_name, $last_name) {
+        $query = 'UPDATE users SET email = :email, first_Name = :first_name, last_Name = :last_name WHERE id = :id';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':first_name', $first_name);
+        $stmt->bindParam(':last_name', $last_name);
+        return $stmt->execute();
+    }
     
+    public function getUserDetails($id) {
+        $query = 'SELECT * FROM users WHERE id = :id';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>

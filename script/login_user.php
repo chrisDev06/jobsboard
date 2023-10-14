@@ -20,10 +20,10 @@ if (isset($_POST['envoi'])) {
                 $_SESSION['role'] = $user['role'];  // Ajout du rôle dans la session
 
                 if ($user['role'] === 'admin') {
-                    header("Location: ../views/admin/admin_dashboard.php");  // Rediriger vers le dashboard admin
+                    header("Location: ../views/admin_dashboard.php");  // Rediriger vers le dashboard admin
                 }
                 elseif(($user['role'] === 'employeur')){
-                    header("Location: ../views/employeur/employeur_dashboard.php");  // Rediriger vers le dashboard admin
+                    header("Location: ../views/employeur_dashboard.php");  // Rediriger vers le dashboard admin
 
                 }
                 else {

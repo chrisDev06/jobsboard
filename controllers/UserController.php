@@ -1,6 +1,5 @@
 <?php
-require_once('../models/UserModel.php');
-
+require '../models/UserModel.php';
 class UserController {
     private $userModel;
 
@@ -19,6 +18,13 @@ class UserController {
     
     public function getAllUsers() {
         return $this->userModel->getUsers();
+    }
+
+    public function updateUser($id, $email, $first_name, $last_name) {
+        return $this->userModel->updateUser($id, $email, $first_name, $last_name);
+    }
+    public function getUserDetails($id) {
+        return $this->userModel->getUserDetails($id);
     }
     
 }

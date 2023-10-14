@@ -1,0 +1,157 @@
+.container {
+  overflow: hidden; /* Assure que la hauteur de la container s'ajuste aux divs flottantes */
+}
+
+.div1,
+.div2 {
+  width: 48%; /* Largeur de chaque div (ajustez selon vos besoins) */
+  margin-right: 2%; /* Marge entre les divs (ajustez selon vos besoins) */
+  float: left;
+}
+
+/* Card */
+
+:root {
+  --purple: #eeeded;
+  --aqua: #b4fee7;
+  --violet: #6195c9;
+  --blue: #4f82e7;
+  --white: #282828;
+  --black: #222;
+  --trueBlack: #000;
+}
+
+.cards_item {
+  display: flex;
+}
+
+.card_jobs {
+  width: 510px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--purple);
+  border-radius: 5px 25px 5px 50px;
+  transition: transform 0.1s linear, box-shadow 0.2s;
+  margin-bottom: 1rem;
+}
+
+.card_text:focus,
+.card_jobs:focus {
+  outline: 3px dashed var(--trueBlack);
+}
+
+.card_jobs:focus,
+.card_jobs:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card_content {
+  padding: 0.5rem 1rem 1rem;
+  color: var(--white);
+}
+
+.card_title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: auto;
+  color: var(--black);
+  padding: 0.3rem;
+  border-radius: 5px 0 0 5px;
+  transform: rotate(-3.3deg);
+  transform-origin: left top;
+  font-family: Georgia, Times, serif;
+  font-weight: 600;
+  font-size: 1.325rem;
+  overflow: hidden;
+  z-index: 1;
+  background-color: var(--blue);
+  animation: 0s 0s fly-in 0 reverse both;
+}
+
+@media (min-width: 535px) {
+  .card_title {
+    animation: 0.5s 0.25s fly-out 1 both;
+  }
+}
+
+.card_jobs:focus .card_title,
+.card_jobs:hover .card_title {
+  animation: 0.5s ease-in 0s fly-in 1 both;
+}
+
+.card_text {
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica,
+    Helvetica Neue, Arial, sans-serif;
+  line-height: 1.5;
+  text-size-adjust: 0.2px;
+  padding: 0 1rem;
+}
+
+.card_text p:first-of-type:first-letter {
+  font-size: 1.8em;
+  font-family: Georgia, Times, serif;
+  margin-right: 0.05em;
+}
+
+@media (min-width: 480px) {
+  .card_text {
+    margin-top: 50px;
+    overflow: auto;
+    max-height: 27rem;
+
+    /* scrollbar-width: thin; */
+  }
+}
+
+.card_text strong {
+  color: var(--aqua);
+}
+
+@keyframes fly-out {
+  0% {
+    top: 0;
+    right: 0;
+    font-size: 1.325rem;
+  }
+
+  25% {
+    top: 0;
+    right: -200%;
+    font-size: 1.325rem;
+  }
+
+  26% {
+    font-size: 2rem;
+  }
+
+  100% {
+    top: 1rem;
+    right: 0;
+    font-size: 2rem;
+  }
+}
+
+@keyframes fly-in {
+  0% {
+    top: 1rem;
+    right: 0;
+    font-size: 2rem;
+  }
+
+  50% {
+    top: 0;
+    right: -200%;
+    font-size: 1.325rem;
+  }
+
+  100% {
+    top: 0.5rem;
+    right: 0;
+    font-size: 1.325rem;
+  }
+}
