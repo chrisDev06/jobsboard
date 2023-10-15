@@ -4,7 +4,11 @@ session_start();
 // Vérifier si la clé 'email' est définie dans la session
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
+    $role = $_SESSION['role'];
+
     echo $email;
+    echo $role;
+
     // Utilisez l'email comme nécessaire
 } else {
     // La clé 'email' n'est pas définie, faites quelque chose pour gérer cette situation

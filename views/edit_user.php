@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["role"]) || $_SESSION["role"] == 'user') {
-    header("Location: ../index.php");
-}
-
 require_once '../controllers/UserController.php';
 require_once '../config/config.php';
 require_once '../models/UserModel.php';
@@ -15,12 +11,19 @@ try {
 
     $userController = new UserController($db);
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
-        $id = $_GET['id'];
+    // Vérifiez si 'user_id' est défini dans $_GET
+    if (isset($_GET['user_id'])) {
+        $user_id = $_GET['user_id'];
         // Obtenir les détails de l'utilisateur pour pré-remplir le formulaire
-        $userDetails = $userController->getUserDetails($id);
+        $userDetails = $userController->getUserDetails($user_id);
+
+        // Vérifiez si les détails de l'utilisateur sont récupérés avec succès
+        if (!$userDetails) {
+            echo "Aucun utilisateur trouvé pour l'ID spécifié.";
+            exit();
+        }
     } else {
-        // Rediriger vers la liste des utilisateurs si l'ID n'est pas spécifié
+        // Rediriger vers la liste des utilisateurs si 'user_id' n'est pas spécifié
         header("Location: index.php");
         exit();
     }
@@ -39,7 +42,7 @@ try {
 <body>
     <h2>Modifier l'utilisateur</h2>
     <form action="../script/update_user.php" method="POST">
-        <input type="hidden" name="id" value="<?= $userDetails['id'] ?>">
+        <input type="hidden" name="id" value="<?= $userDetails['user_id'] ?>">
         
         <label for="email">Email :</label>
         <input type="text" id="email" name="email" value="<?= $userDetails['email'] ?>"><br>

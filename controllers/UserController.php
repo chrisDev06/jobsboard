@@ -12,19 +12,19 @@ class UserController {
         return $this->userModel->addUser($email, $password, $role);
     }
     
-    public function deleteUser($id) {
-        return $this->userModel->deleteUser($id);
+    public function deleteUser($user_id) {
+        return $this->userModel->deleteUser($user_id);
     }
     
     public function getAllUsers() {
         return $this->userModel->getUsers();
     }
 
-    public function updateUser($id, $email, $first_name, $last_name) {
-        return $this->userModel->updateUser($id, $email, $first_name, $last_name);
+    public function updateUser($user_id, $email, $first_name, $last_name) {
+        return $this->userModel->updateUser($user_id, $email, $first_name, $last_name);
     }
-    public function getUserDetails($id) {
-        return $this->userModel->getUserDetails($id);
+    public function getUserDetails($user_id) {
+        return $this->userModel->getUserDetails($user_id);
     }
     
 }

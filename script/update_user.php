@@ -15,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $userController = new UserController($db);
 
-        $id = $_POST['id'];
+        $user_id = $_POST['id']; // Utilisez 'id' plutôt que 'user_id'
         $email = $_POST['email'];
         $first_name = $_POST['first_Name'];
         $last_name = $_POST['last_Name'];
 
         // Appeler la méthode pour mettre à jour l'utilisateur
-        $userController->updateUser($id, $email, $first_name, $last_name);
+        $userController->updateUser($user_id, $email, $first_name, $last_name);
 
         header("Location: ../views/admin_dashboard.php"); // Rediriger vers la liste des utilisateurs
         exit();

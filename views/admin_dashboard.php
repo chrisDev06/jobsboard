@@ -72,14 +72,14 @@ try {
                 <tbody>
                     <?php foreach ($users as $user) : ?>
                         <tr>
-                            <td><?= $user['id'] ?></td>
+                            <td><?= $user['user_id'] ?></td>
                             <td><?= $user['email'] ?></td>
                             <td><?= $user['first_Name'] ?></td>
                             <td><?= $user['last_Name'] ?></td>
                             <td>
-                                <a class="edit" onclick="openUpdateForm(<?= $user['id'] ?>)" style="cursor: pointer;"> <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a class="edit" onclick="openUpdateForm(<?= $user['user_id'] ?>)" style="cursor: pointer;"> <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 
-                                <a href="../script/delete_user.php?id=<?= $user['id'] ?>">Supprimer</a>
+                                <a href="../script/delete_user.php?user_id=<?= $user['user_id'] ?>">Supprimer</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -137,8 +137,8 @@ try {
 
     <script>
     function openUpdateForm(userId) {
-        // Rediriger vers la page d'édition avec l'ID de l'utilisateur
-        window.location.href = `edit_user.php?id=${userId}`;
+        // Rediriger vers la page d'édition avec l'user_id de l'utilisateur
+        window.location.href = `edit_user.php?user_id=${userId}`;
     }
 </script>
 </body>

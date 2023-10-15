@@ -20,7 +20,7 @@ if (isset($_POST['register'])) {
         if ($takeUser->rowCount() > 0) {
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
-            $_SESSION['id'] = $takeUser->fetch()['id'];
+            $_SESSION['user_id'] = $takeUser->fetch()['user_id'];
         }
     } else {
         // message erreur

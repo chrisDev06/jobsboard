@@ -25,27 +25,27 @@ class UserModel {
     }
     
 
-    public function deleteUser($id) {
-        $query = 'DELETE FROM users WHERE id = :id';
+    public function deleteUser($user_id) {
+        $query = 'DELETE FROM users WHERE user_id = :user_id';
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':user_id', $user_id);
         return $stmt->execute(); // Retourne true si la suppression a réussi, false sinon
     }
 
-    public function updateUser($id, $email, $first_name, $last_name) {
-        $query = 'UPDATE users SET email = :email, first_Name = :first_name, last_Name = :last_name WHERE id = :id';
+    public function updateUser($user_id, $email, $first_name, $last_name) {
+        $query = 'UPDATE users SET email = :email, first_Name = :first_name, last_Name = :last_name WHERE user_id = :user_id';
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':first_name', $first_name);
         $stmt->bindParam(':last_name', $last_name);
         return $stmt->execute();
     }
     
-    public function getUserDetails($id) {
-        $query = 'SELECT * FROM users WHERE id = :id';
+    public function getUserDetails($user_id) {
+        $query = 'SELECT * FROM users WHERE user_id = :user_id';
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);

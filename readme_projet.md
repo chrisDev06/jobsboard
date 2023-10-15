@@ -1,7 +1,7 @@
 
 - step 1
 Crud
-✓ dvertisements ;
+✓ advertisements ;
 ✓ companies ;
 ✓ advertisements_information_job application (e-mails envoyés, personnes/annonce concernée, etc.).
 
