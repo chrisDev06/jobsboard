@@ -18,7 +18,8 @@ if (isset($_POST['envoi'])) {
 
                 $_SESSION['email'] = $email;
                 $_SESSION['role'] = $user['role'];  // Ajout du rôle dans la session
-
+                $_SESSION['user_id'] = $user['user_id'];  // Ajout de l'ID de l'utilisateur dans la session
+                
                 if ($user['role'] === 'admin') {
                     header("Location: ../views/admin_dashboard.php");  // Rediriger vers le dashboard admin
                 }

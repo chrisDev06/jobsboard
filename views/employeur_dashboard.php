@@ -1,25 +1,38 @@
 <?php
 session_start();
+require_once '../config/config.php';
 
 if (!isset($_SESSION["role"]) || $_SESSION["role"] == 'user') {
     header("Location: ../index.php");
 }
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../views/log/login.php");
+    var_dump($_SESSION);
+    exit();
+}
 
-require_once '../controllers/UserController.php';
-require_once '../config/config.php';
-
+// Récupérer l'ID de l'utilisateur depuis la session
+$userId = $_SESSION['user_id'];
 
 try {
+    // Initialiser la connexion à la base de données
     $db = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $userController = new UserController($db);
-    $users = $userController->getAllUsers();
+    // Récupérer les informations de l'entreprise liée à cet utilisateur
+    $stmt = $db->prepare("
+        SELECT *
+        FROM companies
+        WHERE user_id = :user_id
+    ");
+    $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    $companyInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    echo 'Database connection error: ' . $e->getMessage();
+    echo 'Erreur de connexion à la base de données : ' . $e->getMessage();
+    exit();
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -85,21 +98,28 @@ try {
         <div class="div2">
             <h2>Mon entreprise</h2>
             <div class="card" >
-                <div class="card-header">
-                    Title
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">adresse</li>
-                    <li class="list-group-item">ville</li>
-                    <li class="list-group-item">code postal</li>
-                    <li class="list-group-item">pays</li>
-                    <li class="list-group-item">telephone</li>
-                    <li class="list-group-item">date_fondation</li>
-                    <li class="list-group-item">email contact</li>
-                    <li class="list-group-item">secteur_activite</li>
-                    <li class="list-group-item">site_web</li>
-                    <li class="list-group-item">email contact</li>
-                    <li class="list-group-item">description</li>
+                <?php
+// ...
+
+if ($companyInfo) {
+    
+    echo '<ul class="list-group list-group-flush">';
+    echo '<li class="list-group-item">ID de l\'entreprise : ' . $companyInfo['id_companie'] . '</li>';
+    echo '<li class="list-group-item">Email de l\'entreprise : ' . $companyInfo['email'] . '</li>';
+    echo '<li class="list-group-item">Nom de l\'entreprise : ' . $companyInfo['name'] . '</li>';
+    echo '<li class="list-group-item">Numéro de téléphone : ' . $companyInfo['number'] . '</li>';
+    echo '<li class="list-group-item">Adresse : ' . $companyInfo['address'] . '</li>';
+    echo '<li class="list-group-item">Code postal : ' . $companyInfo['zip_code'] . '</li>';
+    echo '<li class="list-group-item">Pays : ' . $companyInfo['country'] . '</li>';
+    echo '<li class="list-group-item">Ville : ' . $companyInfo['city'] . '</li>';
+    // echo '<a href="../script/delete_companie.php?id_companie=' . $companie['id_companie'] . '">Delete</a>';
+    // echo '<a href="update_companie_form.php?id_companie=' . $companie['id_companie'] . '">Modifier</a>';
+
+    echo '</ul>';
+} else {
+    echo '<p>Aucune entreprise associée à cet utilisateur.</p>';
+}
+?>
 
                 </ul>
             </div>

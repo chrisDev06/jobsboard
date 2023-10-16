@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_companie'])) {
         
         $companieController->deleteCompanie($id_companie);
 
-        header('Location: ../views/companieIndex.php');
+        header('Location: ../views/admin_dashboard.php');
         exit();
     } catch (PDOException $e) {
         echo 'Erreur lors de la suppression de la companie' .$e->getMessage();

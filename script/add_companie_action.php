@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $companieController->addCompanie($name, $email, $number, $address, $city, $zip_code, $country);
 
-        header("Location: ../views/companieIndex.php");
+        header("Location: ../views/admin_dashboard.php");
         exit();
     } catch (PDOException $e) {
         echo 'Erreur lors de l\'ajout de l\'entreprise: ' . $e->getMessage();

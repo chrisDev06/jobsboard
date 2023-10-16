@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION["role"]) || $_SESSION["role"] == 'user') {
     header("Location: ../index.php");
 }
-
+require_once '../controllers/CompanieController.php';
 require_once '../controllers/UserController.php';
 require_once '../config/config.php';
 
@@ -14,6 +14,10 @@ try {
 
     $userController = new UserController($db);
     $users = $userController->getAllUsers();
+
+
+    $companieController = new CompanieController($db) ;
+    $companies = $companieController->getAllCompanies();
 } catch (PDOException $e) {
     echo 'Database connection error: ' . $e->getMessage();
 }
@@ -101,40 +105,49 @@ try {
     </div>
     </div>
 
-
-    <!-- Edit Modal HTML -->
-    <div id="editEmployeeModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="editForm">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Employee</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <div class="card_admin">
+    <div class="table-wrapper">
+    <table class="table table-striped table-hover">
+    <div class="col-sm-6 mb-3 mt-3">
+                        <a href="./form_companie.php" class="btn btn-success" data-toggle="modal"><i  class="material-icons">&#xE147;</i> <span>Add New Users</span></a>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" id="edit-email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>First Name</label>
-                            <input type="text" class="form-control" id="edit-first-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" class="form-control" id="edit-last-name" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-info" value="Save">
-                    </div>
-                </form>
-            </div>
-        </div>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Number</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Zip code</th>
+                <th>Country</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($companies as $companie) : ?>
+                <tr>
+                    <td><?= $companie['id_companie'] ?></td>
+                    <td><?= $companie['name'] ?></td>
+                    <td><?= $companie['email'] ?></td>
+                    <td><?= $companie['number'] ?></td>
+                    <td><?= $companie['address'] ?></td>
+                    <td><?= $companie['city'] ?></td>
+                    <td><?= $companie['zip_code'] ?></td>
+                    <td><?= $companie['country'] ?></td>
+                    <td>
+                        <a href="../script/delete_companie.php?id_companie=<?= $companie['id_companie'] ?>">Delete</a>
+                        <a href="update_companie_form.php?id_companie=<?= $companie['id_companie'] ?>">Update</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
     </div>
 
 
+<a href="form_companie.php">New companie</a>
     <script>
     function openUpdateForm(userId) {
         // Rediriger vers la page d'édition avec l'user_id de l'utilisateur

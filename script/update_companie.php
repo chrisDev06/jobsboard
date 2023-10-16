@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $companieController->updateCompanie($name, $email, $number, $address, $city, $zip_code, $country, $id_companie);
 
-        header('Location: ../views/companieIndex.php');
+        header('Location: ../views/admin_dashboard.php');
         exit();
     } catch (PDOException $e) {
         echo 'Echec' . $e->getMessage();
