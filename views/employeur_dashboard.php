@@ -124,6 +124,33 @@ if ($companyInfo) {
                 </ul>
             </div>
         </div>
+        <h2>Créer une annonce</h2>
+        <form action="../script/add_advertissement.php" method="post">
+            <label for="title">Titre :</label><br>
+            <input type="text" id="title" name="title"><br>
+            <label for="address">Adresse :</label><br>
+            <input type="text" id="address" name="address"><br>
+            <label for="zip_code">Code postal :</label><br>
+            <input type="text" id="zip_code" name="zip_code"><br>
+            <label for="country">Pays :</label><br>
+            <input type="text" id="country" name="country"><br>
+            <label for="city">Ville :</label><br>
+            <input type="text" id="city" name="city"><br>
+            <label for="description">Description :</label><br>
+            <textarea id="description" name="desc"></textarea><br>
+            <label for="salary">Salaire :</label><br>
+            <input type="text" id="salary" name="salary"><br>
+            <label for="date">Date de début :</label><br>
+            <input type="date" id="date" name="date"><br>
+            <label for="phone">Numéro de téléphone :</label><br>
+            <input type="text" id="phone" name="phone"><br>
+            <label for="contact">Contact :</label><br>
+            <input type="text" id="contact" name="contact"><br><br>
+            <input type="submit" value="Créer">
+        </form>
+
+       
+
     </div>
 </body>
 </html>
