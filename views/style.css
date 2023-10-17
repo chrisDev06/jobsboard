@@ -1,3 +1,14 @@
+.container {
+  overflow: hidden; /* Assure que la hauteur de la container s'ajuste aux divs flottantes */
+}
+
+.div1,
+.div2 {
+  width: 48%; /* Largeur de chaque div (ajustez selon vos besoins) */
+  margin-right: 2%; /* Marge entre les divs (ajustez selon vos besoins) */
+  float: left;
+}
+
 .mt-3{
   margin-top: 20px;
 }
