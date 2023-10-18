@@ -46,5 +46,14 @@ class CompanieModel {
         $stmt->bindParam(':id_companie', $id_companie);
         return $stmt->execute();
     }
+
+    public function getCompanieDetails($id_companie) {
+        $query = 'SELECT * FROM companies WHERE id_companie = :id_companie';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id_companie', $id_companie);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>

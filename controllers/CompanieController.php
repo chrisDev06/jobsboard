@@ -23,5 +23,9 @@ class CompanieController {
     public function updateCompanie($name, $email, $number, $address, $city, $zip_code, $country, $id_companie) {
         return $this->companieModel-> updateCompanie($name, $email, $number, $address, $city, $zip_code, $country, $id_companie);
     }
+
+    public function getCompanieDetails($id_companie) {
+        return $this->companieModel->getCompanieDetails($id_companie);
+    }
 }
 ?>

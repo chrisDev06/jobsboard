@@ -82,7 +82,6 @@ try {
                             <td><?= $user['last_Name'] ?></td>
                             <td>
                                 <a class="edit" onclick="openUpdateForm(<?= $user['user_id'] ?>)" style="cursor: pointer;"> <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-
                                 <a href="../script/delete_user.php?user_id=<?= $user['user_id'] ?>">Supprimer</a>
                             </td>
                         </tr>
@@ -109,7 +108,7 @@ try {
     <div class="table-wrapper">
     <table class="table table-striped table-hover">
     <div class="col-sm-6 mb-3 mt-3">
-                        <a href="./form_companie.php" class="btn btn-success" data-toggle="modal"><i  class="material-icons">&#xE147;</i> <span>Add New Users</span></a>
+                        <a href="./form_companie.php" class="btn btn-success" data-toggle="modal"><i  class="material-icons">&#xE147;</i> <span>Add New Companie</span></a>
                     </div>
         <thead>
             <tr>
@@ -137,7 +136,7 @@ try {
                     <td><?= $companie['country'] ?></td>
                     <td>
                         <a href="../script/delete_companie.php?id_companie=<?= $companie['id_companie'] ?>">Delete</a>
-                        <a href="update_companie_form.php?id_companie=<?= $companie['id_companie'] ?>">Update</a>
+                        <a class="edit" onclick="openUpdateFormCompanie(<?= $companie['id_companie'] ?>)" style="cursor: pointer;"> <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -146,12 +145,15 @@ try {
 </div>
     </div>
 
-
-<a href="form_companie.php">New companie</a>
-    <script>
+<script>
     function openUpdateForm(userId) {
         // Rediriger vers la page d'édition avec l'user_id de l'utilisateur
         window.location.href = `edit_user.php?user_id=${userId}`;
+    }
+
+    function openUpdateFormCompanie(id_companie) {
+        // Rediriger vers la page d'édition avec l'user_id de l'utilisateur
+        window.location.href = `update_companie_form.php?id_companie=${id_companie}`;
     }
 </script>
 </body>
