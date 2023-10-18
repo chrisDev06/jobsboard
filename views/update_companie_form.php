@@ -42,7 +42,7 @@ try {
 
         <input type="hidden" name="id_companie" value="<?php echo $_GET['id_companie']; ?>" readonly><br>
 
-        <label for="name">Title :</label>
+        <label for="name">Name :</label>
         <input type="text" id="name" name="name" value="<?= $companieDetail['name'] ?>"><br>
 
         <label for="email">Email :</label>

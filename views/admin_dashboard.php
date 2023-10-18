@@ -6,6 +6,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] == 'user') {
 }
 require_once '../controllers/CompanieController.php';
 require_once '../controllers/UserController.php';
+require_once '../controllers/AdvertisementController.php';
 require_once '../config/config.php';
 
 try {
@@ -13,15 +14,16 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $userController = new UserController($db);
+    $companieController = new CompanieController($db);
+    $advertisementController = new AdvertisementController($db);
+  
     $users = $userController->getAllUsers();
-
-
-    $companieController = new CompanieController($db) ;
     $companies = $companieController->getAllCompanies();
+    $advertisements = $advertisementController->getAllAdvertisement();
+    
 } catch (PDOException $e) {
     echo 'Database connection error: ' . $e->getMessage();
 }
-	
 
 ?>
 
@@ -46,7 +48,7 @@ try {
 </head>
 <body>
     <div class="card_admin">
-    <div class="container">
+        <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -105,9 +107,9 @@ try {
     </div>
 
     <div class="card_admin">
-    <div class="table-wrapper">
-    <table class="table table-striped table-hover">
-    <div class="col-sm-6 mb-3 mt-3">
+            <div class="table-wrapper">
+        <table class="table table-striped table-hover">
+        <div class="col-sm-6 mb-3 mt-3">
                         <a href="./form_companie.php" class="btn btn-success" data-toggle="modal"><i  class="material-icons">&#xE147;</i> <span>Add New Companie</span></a>
                     </div>
         <thead>
@@ -145,6 +147,52 @@ try {
 </div>
     </div>
 
+    <div class="card_admin">
+            <div class="table-wrapper">
+        <table class="table table-striped table-hover">
+        <div class="col-sm-6 mb-3 mt-3">
+                        <a href="./form_companie.php" class="btn btn-success" data-toggle="modal"><i  class="material-icons">&#xE147;</i> <span>Add New Companie</span></a>
+                    </div>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>title</th>
+                <th>Address</th>
+                <th>Zip code</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Description</th>
+                <th>Salaire</th>
+                <th>Date</th>
+                <th>Phone</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($advertisements as $advertisement) : ?>
+                <tr>
+                    <td><?= $advertisement['id_advertisement'] ?></td>
+                    <td><?= $advertisement['title'] ?></td>
+                    <td><?= $advertisement['address'] ?></td>
+                    <td><?= $advertisement['zip_code'] ?></td>
+                    <td><?= $advertisement['country'] ?></td>
+                    <td><?= $advertisement['city'] ?></td>
+                    <td><?= $advertisement['desc'] ?></td>
+                    <td><?= $advertisement['salary'] ?></td>
+                    <td><?= $advertisement['date'] ?></td>
+                    <td><?= $advertisement['phone'] ?></td>
+                    <td><?= $advertisement['contact'] ?></td>
+                    <td>
+                        <a href="../script/delete_advertissement.php?id_advertisement=<?= $advertisement['id_advertisement'] ?>">Delete</a>
+                        <a class="edit" onclick="openUpdateFormAdvertissement(<?= $advertisement['id_advertisement'] ?>)" style="cursor: pointer;"> <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+    </div>
+
 <script>
     function openUpdateForm(userId) {
         // Rediriger vers la page d'édition avec l'user_id de l'utilisateur
@@ -154,6 +202,11 @@ try {
     function openUpdateFormCompanie(id_companie) {
         // Rediriger vers la page d'édition avec l'user_id de l'utilisateur
         window.location.href = `update_companie_form.php?id_companie=${id_companie}`;
+    }
+
+    function openUpdateFormAdvertissement(id_advertisement) {
+        // Rediriger vers la page d'édition avec l'user_id de l'utilisateur
+        window.location.href = `update_advertissement_form.php?id_advertisement=${id_advertisement}`;
     }
 </script>
 </body>

@@ -1,5 +1,5 @@
 <?php
-class UserModel {
+class AdvertisementModel {
     private $conn;
 
     public function __construct($db) {
