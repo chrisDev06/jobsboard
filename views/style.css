@@ -389,4 +389,29 @@ Generic layout (demo looks)
 }
 
 /* ************************************ */
+/* Learn More Button */
+/* ************************************ */
 
+.ad-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.learn-more-button {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.ad-info {
+  display: none;
+}
+
+.ad-info.show-details {
+  display: block;
+}
+
+/* ************************************ */

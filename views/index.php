@@ -44,6 +44,15 @@ try {
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -100,40 +109,50 @@ try {
         <div class="container_carrou_slide">
             <section class="articles">
                 <article>
-                    <?php foreach ($advertisements as $advertisement) : ?>
-                    <div class="article-wrapper">
-                        <figure>
-                            <img src="https://picsum.photos/id/103/800/450" alt="" />
-                        </figure>
-                        <div class="article-body">
-                            <h2><?= $advertisement['title'] ?></h2>
-                            <p><?= $advertisement['desc'] ?></p>
-                            <div class="container">
-                                <form action="../script/postuler.php" method="POST">
-                                        <input type="hidden" name="user_id"
-                                            value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>">
-                                        <input type="hidden" name="id_advertisement"
-                                            value="<?= $advertisement['id_advertisement'] ?>">
-                                            <input type="submit" name="postuler" value="Subscribe!"  />
-                                    </form>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </article>
-            </section>
+                <?php foreach ($advertisements as $advertisement) : ?>
+    <div class="article-wrapper">
+        <figure>
+            <img src="https://picsum.photos/id/103/800/450" alt="" />
+        </figure>
+        <div class="article-body">
+            <h2><?= $advertisement['title'] ?></h2>
+            <p><?= $advertisement['desc'] ?></p>
+            <div class="container">
+                <!-- Display additional information when "Learn More" is clicked -->
+                <div class="ad-details" style="display: none;">
+                    <p><strong>Description:</strong> <?= $advertisement['desc'] ?></p>
+                    <p><strong>Adresse:</strong> <?= $advertisement['address'] ?></p>
+                    <p><strong>zip_code :</strong> <?= $advertisement['zip_code'] ?></p>
+                    <p><strong>country:</strong> <?= $advertisement['country'] ?></p>
+                    <p><strong>city:</strong> <?= $advertisement['city'] ?></p>
+                    <p><strong>desc:</strong> <?= $advertisement['desc'] ?></p>
+                    <p><strong>salary:</strong> <?= $advertisement['salary'] ?></p>
+                    <p><strong>date:</strong> <?= $advertisement['date'] ?></p>
+                    <p><strong>phone:</strong> <?= $advertisement['phone'] ?></p>
+                    <p><strong>contact:</strong> <?= $advertisement['contact'] ?></p>
+                </div>
+                <button class="learn-more-button" onclick="toggleAdDetails(this)">Learn More</button>
+            </div>
+            <div class="container">
+                <form action="../script/postuler.php" method="POST">
+                    <input type="hidden" name="user_id" value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>">
+                    <input type="hidden" name="id_advertisement" value="<?= $advertisement['id_advertisement'] ?>">
+                    <input type="submit" name="postuler" value="Apply" />
+                </form>
+            </div>
         </div>
     </div>
+<?php endforeach; ?>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<script>
+    function toggleAdDetails(button) {
+        const adDetails = button.previousElementSibling;
+        adDetails.style.display = adDetails.style.display === 'none' || adDetails.style.display === '' ? 'block' : 'none';
+    }
+</script>
+
+
+    
 </body>
 
 </html>
