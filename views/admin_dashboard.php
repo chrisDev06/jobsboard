@@ -151,7 +151,7 @@ try {
             <div class="table-wrapper">
         <table class="table table-striped table-hover">
         <div class="col-sm-6 mb-3 mt-3">
-                        <a href="./form_companie.php" class="btn btn-success" data-toggle="modal"><i  class="material-icons">&#xE147;</i> <span>Add New Companie</span></a>
+                        <a href="./form_advertisement.php" class="btn btn-success" data-toggle="modal"><i  class="material-icons">&#xE147;</i> <span>Add New Companie</span></a>
                     </div>
         <thead>
             <tr>
@@ -184,7 +184,9 @@ try {
                     <td><?= $advertisement['contact'] ?></td>
                     <td>
                         <a href="../script/delete_advertissement.php?id_advertisement=<?= $advertisement['id_advertisement'] ?>">Delete</a>
-                        <a class="edit" onclick="openUpdateFormAdvertissement(<?= $advertisement['id_advertisement'] ?>)" style="cursor: pointer;"> <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                        <a class="edit" href="./update_advertissement_form.php?id_advertisement=<?= $advertisement['id_advertisement'] ?>">
+    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+</a>                    
                     </td>
                 </tr>
             <?php endforeach; ?>
